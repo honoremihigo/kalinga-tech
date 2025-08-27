@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New Reservation Assigned</title>
+  <style>
+    /* Same style as provided by you (abbreviated to save space) */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #47B2E4 0%, #293751 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #47B2E4 0%, #293751 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    .header h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+    .content { padding: 30px; }
+    .status-badge {
+      background: #fbbf24;
+      color: #293751;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .detail-card {
+      background: #f4f8fc;
+      border: 1px solid #d3e9f8;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .detail-card strong {
+      display: block;
+      color: #293751;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+    .detail-card span {
+      color: #47B2E4;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .followup-section {
+      background: #fff8e1;
+      border-left: 5px solid #fbbf24;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    .footer {
+      background: #f0f4f9;
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #d0e2f2;
+    }
+    .footer p {
+      color: #333;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header class="header">
+      <h1>New Reservation Assigned</h1>
+      <p>You have a new pickup to prepare for.</p>
+    </header>
+
+    <section class="content" aria-label="Driver welcome">
+      <p>Hello,</p>
+      <p>
+        A new reservation has been assigned to you. Please review the details below. Do not proceed until you receive a separate email or SMS confirmation that the client has completed payment.
+      </p>
+    </section>
+
+    <section class="content" aria-label="Reservation Details">
+      <h3>Reservation Details</h3>
+      <div class="details-grid">
+        <div class="detail-card">
+          <strong>Client Name</strong>
+          <span>{{firstName}} {{lastName}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Phone</strong>
+          <span>{{customerPhone}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Email</strong>
+          <span>{{customerEmail}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Pickup</strong>
+          <span>{{pickup}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Dropoff</strong>
+          <span>{{dropoff}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Date & Time</strong>
+          <span>{{scheduledDateTime}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Passengers</strong>
+          <span>{{numberOfPassengers}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Distance</strong>
+          <span>{{distance}} km</span>
+        </div>
+        <div class="detail-card">
+          <strong>Duration</strong>
+          <span>{{duration}}</span>
+        </div>
+     
+       
+      </div>
+    </section>
+
+    <section class="content followup-section" aria-label="Reminder">
+      <h3>Important Notice</h3>
+      <p>
+        This reservation is pending payment. Once payment is completed, you will be notified via email or SMS to proceed with the pickup. Ensure your schedule is ready for the above time.
+      </p>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      <p>If you have any issues, contact support.</p>
+      <p>Email: support@abyridellc.com | Phone: +1 (555) 123-4567</p>
+    </footer>
+  </div>
+</body>
+</html>

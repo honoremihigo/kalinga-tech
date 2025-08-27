@@ -1,0 +1,613 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id          Int     @id @default(autoincrement())
+  firstName   String?
+  lastName    String?
+  email       String? @unique
+  phoneNumber String? @unique
+
+  // Authentication & Activity
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  lastLogin DateTime?
+
+  // Location tracking
+  latitude      Float?
+  longitude     Float?
+  lastUpdated   DateTime?
+  googleId      String?   @unique // For Google Sign-In
+  expoPushToken String? // <-- Add this to store the Expo token
+
+  ride         Ride[]
+  ClientDevice ClientDevice[]
+  booking   Booking[]
+}
+
+model ClientDevice {
+  id            Int      @id @default(autoincrement())
+  deviceId      String
+  deviceType    String
+  expoPushToken String?
+  lastLogin     DateTime @default(now())
+  isActive      Boolean  @default(true)
+
+  clientId Int
+  client   Client @relation(fields: [clientId], references: [id])
+
+  @@unique([deviceId, clientId]) // Prevent duplicate entries for same device
+}
+
+model Activity {
+  id            String      @id @default(uuid())
+  createdAt     DateTime    @default(now())
+  reservationId String
+  reservation   Reservation @relation(fields: [reservationId], references: [id])
+}
+
+model Reservation {
+  id                String @id @default(uuid())
+  ReservationNumber String @unique
+  firstName         String
+  lastName          String
+  email             String
+  phoneNumber       String
+  pickup            String
+  dropoff           String
+  distance          Float
+  duration          String
+
+  paymentSessionId         String?   @unique
+  paymentIntentId          String?
+  paymentStatus            String    @default("pending")
+  numberOfPassengers       Int       @default(1)
+  scheduledDateTime        DateTime?
+  price                    Float
+  paymentUrl               String    @db.Text
+  paymentTransactionNumber String?   @unique
+  paymentConfirmedAt       DateTime?
+
+  paymentMethod       String?
+  riderType           String?
+  otherRiderFirstName String?
+  otherRiderLastName  String?
+  otherRiderEmail     String?
+  otherRiderPhone     String?
+
+  carCategoryId Int?
+  carCategory   FeeCategory? @relation(fields: [carCategoryId], references: [id])
+
+  /// 🚀 New fields below
+  driverId             Int? // FK to Driver (optional if not assigned yet)
+  driver               Driver? @relation(fields: [driverId], references: [id])
+  driverEarningAmount  Float? // driver's earning
+  abyrideEarningAmount Float? // AbyRide's earning
+  Rating               String  @default("0")
+  reservationStatus    String  @default("pending")
+
+  cancellationReason String?
+  canceledAt         DateTime?
+
+  rideCompletedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  Activity Activity[]
+
+
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  names     String   @unique
+  email     String   @unique
+  password  String
+  isLocked  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  blog   Blog[]
+}
+
+model Driver {
+  id                Int      @id @default(autoincrement())
+  firstName         String
+  lastName          String
+  latitude          Float    @default(0.0)
+  longitude         Float    @default(0.0)
+  locationUpdatedAt DateTime @default(now())
+
+  dateOfBirth            DateTime @db.Date
+  gender                 String
+  nationality            String
+  phoneNumber            String   @unique
+  email                  String   @unique
+  address                String
+  emergencyContactName   String
+  emergencyContactNumber String
+  bankAccountNumber      String // optional
+  licenseId              String   @unique
+  licenseExpiryDate      DateTime @db.Date
+  yearsOfExperience      Int
+  languages              String
+  previousEmployment     String?
+  availabilityToStart    DateTime @db.Date
+  licenseIssuedIn        String? // or String, whatever fits your data
+
+  // Document fields
+  nationalIdOrPassport String?
+
+  policeClearanceCertificate String?
+  proofOfAddress             String?
+  drivingCertificate         String? // Optional
+  workPermitOrVisa           String? // For foreign nationals
+  drugTestReport             String? // If required
+  employmentReferenceLetter  String? // If applying for a job
+  Availability               String? @default("Offline")
+  bankStatementFile          String?  // optional file path or URL
+  Status                     String @default("Pending")
+  createdAt               DateTime @default(now())
+  expoPushToken  String?  // <-- Add this to store the Expo token
+  feeCategoryId          Int?
+  feeCategory            FeeCategory? @relation(fields: [feeCategoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  driverType            String? @default("ON WAGE") // e.g., "Driver", "Dispatcher", "Admin"
+  Reservation Reservation[]
+  ride Ride[]
+  driverRatingCount       Int          @default(0)
+  googleId                String       @default("dskjdskjdsk") @unique
+  foundProperty FoundProperties[]
+  booking   Booking[]
+}
+
+model Vehicle {
+  id          Int     @id @default(autoincrement())
+  vinNumber   String  @unique
+  make        String
+  model       String
+  year        String
+  plateNumber String?
+  color       String
+  luggage     String?
+  handluggage String?
+  category    String? @default("Abyride X")
+
+  ownerId           Int
+  registrationState String?
+  registrationDate  DateTime?
+  expiryDate        DateTime?
+
+  insuranceNumber  String?
+  insuranceCompany String?
+  insuranceExpiry  DateTime?
+
+  numberOfDoors   String?
+  seatingCapacity String?
+
+  // Exterior photos
+  exteriorPhoto1 String?
+  exteriorPhoto2 String?
+  exteriorPhoto3 String?
+  exteriorPhoto4 String?
+
+  // Interior photos
+  interiorPhoto1 String?
+  interiorPhoto2 String?
+  interiorPhoto3 String?
+  interiorPhoto4 String?
+
+  // History fields
+  serviceHistory  Json?
+  accidentHistory Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  fare Fare[]
+}
+
+model Fare {
+  id Int @id @default(autoincrement())
+  categoryId Int
+  fromDay String
+  tillDay String
+  fromTime String
+  tillTime String
+  startRate Float
+  startRatePerMile Float 
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade,onUpdate: Cascade)
+}
+
+model FeeCategory {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  description  String
+  bookingFee   Float
+  feePerMile   Float
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  driver       Driver[] // 👈 Relation to Driver
+  reservations Reservation[] // 👈 Relation back
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String
+  phone     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model LostPropertyReport {
+  id               Int     @id @default(autoincrement())
+  fullName         String
+  phoneNumber      String
+  email            String? // Optional
+  bookingReference String? // Optional ride booking number/reference
+
+  itemCategory     String // e.g., phone, wallet, keys, etc.
+  itemDescription  String // Details about the lost item
+  approximateValue String? // Optional value of item
+  lostLocation     String? // Where in the vehicle/item was lost
+  preferredContact String // e.g., phone call, SMS, email
+  bestContactTime  String? // Optional, e.g., "Afternoon", "Evenings"
+  additionalNotes  String? // Optional extra info
+  status           String   @default("Not found ")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model FoundProperty {
+  id              Int      @id @default(autoincrement())
+
+  fullName         String?
+  phoneNumber      String?
+  email            String? // Optional
+  bookingReference String? // Optional ride booking number/reference
+  approximateValue String? // Optional value of item
+  reservationId   String?
+  itemCategory    String
+  itemDescription String
+  foundLocation   String?
+  referredContact String? // e.g., phone call, SMS, email
+  bestContactTime  String? // Optional, e.g., "Afternoon", "Evenings"
+  additionalNotes String?
+  status          String   @default("Found")
+  foundAt         DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("found_properties")
+}
+
+model Ride {
+  id             Int           @id @default(autoincrement())
+  clientId       Int
+  driverId       Int
+  price          Decimal       @db.Decimal(10, 2)
+  date           DateTime
+  pickupAddress  String        @db.Text
+  dropoffAddress String        @db.Text
+  pickupLat      Decimal       @db.Decimal(10, 8)
+  pickupLong     Decimal       @db.Decimal(11, 8)
+  dropoffLat     Decimal       @db.Decimal(10, 8)
+  dropoffLong    Decimal       @db.Decimal(11, 8)
+  status         RideStatus    @default(PENDING)
+  paymentStatus  PaymentStatus @default(PENDING)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  client         Client?       @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  driver         Driver?       @relation(fields: [driverId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+enum RideStatus {
+  PENDING
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+
+
+model Booking {
+  id                      String   @id @default(uuid())
+  bookingNumber           String   @unique
+  
+  // Client & Driver
+  clientId                Int
+  driverId                Int?
+  client                  Client   @relation(fields: [clientId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  driver                  Driver?  @relation(fields: [driverId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  // Passenger Info
+  firstName               String?
+  lastName                String?
+  email                   String?
+  phoneNumber             String?
+
+  // Trip Details
+  pickupAddress           String?   @db.Text
+  pickupNote              String?
+  dropoffAddress          String?   @db.Text
+  dropoffNote             String?
+  distance                Float?
+  duration                String?
+  date                    DateTime?
+
+  // Pricing
+  price                   Decimal?  @db.Decimal(10, 2)
+  extraCharge             Decimal? @db.Decimal(10, 2)
+  driverPackageCharge     Decimal? @db.Decimal(10, 2)
+  driverWaitingCharge     Decimal? @db.Decimal(10, 2)
+  driverEarningAmount     Decimal? @db.Decimal(10, 2)
+  abyrideEarningAmount    Decimal? @db.Decimal(10, 2)
+  luggageCount            Int?     @default(0)
+  waitingMin        String?
+  rideCategory      String?
+
+  // Payment
+  paymentMethod           PaymentMethod?
+  paymentStatus           BookingPaymentStatus @default(PENDING)
+  paymentSessionId        String? @unique
+  paymentIntentId         String?
+  paymentConfirmedAt      DateTime?
+
+  // Status
+  bookingStatus           BookingStatus? @default(PENDING)
+  rating                  String? @default("0")
+  canceledAt              DateTime?
+  rideCompletedAt         DateTime?
+
+  // Relations
+  returnTrips             BookingReturn[]
+  lostProperty     LostProperties[]
+
+  createdAt               DateTime @default(now())
+}
+
+model BookingReturn {
+  id                String   @id @default(uuid())
+  bookingId         String
+  booking           Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  returnDate        DateTime
+  pickupAddress     String   @db.Text
+  dropoffAddress    String   @db.Text
+  pickupNote        String?
+  dropoffNote       String?
+  distance          Float?
+  duration          String?
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum BookingPaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  CREDITCARD
+}
+
+
+
+
+
+
+model Employee{
+  id String @id @default(uuid())
+  firstname String?
+  lastname String?
+  email String? @unique
+  phoneNumber String? @unique
+  address String?
+  createdAt DateTime @default(now())
+  tasks  Task[] @relation("EmployeeTasks")
+}
+
+
+model Task{
+  id String @id @default(uuid())
+  taskname String?
+  description String?
+  createdAt DateTime @default(now())
+  employees Employee[]  @relation("EmployeeTasks")
+}
+
+
+model Complaint {
+  id            String           @id @default(uuid())
+  customerName  String?          // required only if no rideId
+  rideId        String?          // optional if customerName is provided
+  complaintType String
+  message       String
+  status        ComplaintStatus  @default(PENDING)
+  submittedAt   DateTime         @default(now())
+  resolvedAt    DateTime?
+
+}
+
+enum ComplaintStatus {
+  PENDING
+  IN_REVIEW
+  RESOLVED
+  REJECTED
+}
+
+model Location {
+  location_id String   @id @default(uuid())
+  name        String
+  address     String
+  latitude    Float
+  longitude   Float
+  created_by  String?   // Could be a foreign key to User or Company if needed
+  is_favorite Boolean  @default(false)
+  created_at  DateTime @default(now())
+}
+
+
+model Member {
+  id                    String   @id @default(uuid())
+  name                  String
+  email                 String   @unique
+  phone                 String   @unique
+  street                String
+  district              String
+  city                  String
+  country               String
+  expectedMonthlyRides  String
+  ridePurposes          Json?   // Stored as JSON string
+  identityDocument      String?  // File URL or path
+  profileImage          String?  // File URL or path
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+
+
+model FoundProperties {
+  id              String   @id @default(uuid())
+  imageUrl String
+  itemDescription String
+  locationFound   String
+  driverId        Int?
+  driver          Driver?   @relation(fields: [driverId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  // One-to-one approved claimant
+  ownerId String? @unique
+  approvedClaimant   Claimant? @relation("ApprovedClaimant", fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  // List of all claimants (one-to-many)
+  claims          Claimant[] @relation("ClaimantClaims")
+  returnerName    String?
+  returnerEmail   String?
+  returnerPhone   String?
+  returnerDescription  String?
+  status          FoundPropertyStatus @default(pending)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Claimant {
+  id              String   @id @default(uuid())
+  fullName        String?
+  phone           String?
+  email           String?
+  description          String
+  // One-to-many claim relation
+  foundPropertyId String
+  foundProperty   FoundProperties @relation("ClaimantClaims", fields: [foundPropertyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  // Reverse side of approvedClaimant relation (optional)
+  approvedFor     FoundProperties? @relation("ApprovedClaimant")
+  createdAt       DateTime @default(now())
+}
+
+enum FoundPropertyStatus {
+  pending
+  returned
+  unclaimed
+
+}
+
+
+model LostProperties {
+  id String @id @default(uuid())
+  bookingNumber String?
+  booking   Booking? @relation(fields: [bookingNumber], references: [bookingNumber], onDelete: Cascade,onUpdate: Cascade)
+  itemName    String
+  claimantPhone String?
+  claimantEmail String?
+  itemDescription  String
+  returnerName   String?
+  returnerPhone  String?
+  returnerEmail  String?
+  returnerDescription String?
+  status   LostPropertyStatus @default(lost)
+  createdAt DateTime @default(now())
+}
+
+enum LostPropertyStatus {
+  lost
+  found
+}
+model Message {
+  id         String   @id @default(uuid())
+  from       String
+  to         String
+  content    String
+  direction  MessageDirection
+  createdAt  DateTime @default(now())
+}
+
+enum MessageDirection {
+  SENT
+  RECEIVED
+}
+
+
+model Blog{
+  id        String   @id @default(uuid())
+  adminId    String
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  title     String
+  category String
+  blogImage  String
+  quote    String
+  content   String   @db.VarChar(10000)
+  createdAt DateTime @default(now())
+}
+
+
+model Product {
+  id             String       @id @default(uuid())
+  name           String
+  description    String    @db.VarChar(1000)
+  productImage   String
+  createdAt      DateTime  @default(now())
+
+  // Laptop-specific properties
+  brand          String
+  model          String
+  processor      String
+  ram            String
+  storage        String
+  graphicsCard   String
+  resolution     String
+}

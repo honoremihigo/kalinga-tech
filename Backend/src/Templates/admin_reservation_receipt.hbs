@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Reservation Paid</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #47B2E4 0%, #293751 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #47B2E4 0%, #293751 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .summary-section h2 {
+      font-size: 1.8rem;
+      color: #293751;
+      margin-bottom: 10px;
+    }
+
+    .summary-section p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .detail-card {
+      background: #f4f8fc;
+      border: 1px solid #d3e9f8;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .detail-card strong {
+      display: block;
+      color: #293751;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .detail-card span {
+      color: #47B2E4;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .footer {
+      background: #f0f4f9;
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #d0e2f2;
+    }
+
+    .footer p {
+      color: #333;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        border-radius: 15px;
+      }
+
+      .header {
+        padding: 30px 20px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Reservation Paid</h1>
+      <p>A new reservation has been successfully paid</p>
+    </div>
+
+    <div class="content">
+      <div class="summary-section">
+        <h2>Payment & Client Details</h2>
+        <p>Below are the details for the newly paid reservation:</p>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-card"><strong>Receipt Number</strong><span>{{receiptNumber}}</span></div>
+        <div class="detail-card"><strong>Client Name</strong><span>{{fullName}}</span></div>
+        <div class="detail-card"><strong>Client Email</strong><span>{{email}}</span></div>
+        <div class="detail-card"><strong>Client Phone</strong><span>{{phone}}</span></div>
+        <div class="detail-card"><strong>Pickup</strong><span>{{pickup}}</span></div>
+        <div class="detail-card"><strong>Dropoff</strong><span>{{dropoff}}</span></div>
+        <div class="detail-card"><strong>Scheduled Time</strong><span>{{scheduledDateTime}}</span></div>
+        <div class="detail-card"><strong>Passengers</strong><span>{{numberOfPassengers}}</span></div>
+        <div class="detail-card"><strong>Distance</strong><span>{{distance}} km</span></div>
+        <div class="detail-card"><strong>Duration</strong><span>{{duration}}</span></div>
+        <div class="detail-card"><strong>Total Paid</strong><span>{{price}}</span></div>
+        <div class="detail-card"><strong>Driver Assigned</strong><span>{{driverAssigned}}</span></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>This is an automatic system alert for paid reservations.</p>
+      <p>Thank you,<br><strong>AbyRide System</strong></p>
+    </div>
+  </div>
+</body>
+</html>

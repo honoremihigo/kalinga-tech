@@ -1,0 +1,684 @@
+/* 
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+
+    
+
+    Contents and all features developed in this system.
+    Prepared and developed by @Abyride Freelancer Developer(Prince Parfait & Abyride Team) - +(250) 7 9205 4846
+    Email Address: ganzaparfait7@gmail.com
+
+
+
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+
+*/
+
+:root {
+  --main-color: rgb(17, 85, 85);
+  --dark-color: rgb(68, 68, 68);
+  --dark-main-color: rgb(32, 30, 30);
+  --white-color: rgb(255, 255, 255);
+  --primary-color: rgb(52, 152, 219);
+  --danger-color: rgb(219, 52, 52);
+}
+
+input {
+  color: var(--white-color);
+}
+
+.gpp-container {
+  position: relative;
+ 
+}
+
+
+.gpp-container .gpp-top-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: var(--dark-main-color);
+  color: var(--white-color);
+  font-weight: bold;
+  border-radius: 0 0 15px 15px;
+}
+
+.gpp-container .gpp-header {
+  background-color: rgb(231, 236, 243);
+  height: 75px;
+  border-radius: 10px;
+  width: 100%;
+  margin-block-start: 10px;
+}
+
+.gpp-container .welcomeBox {
+  background-color: #47b2e4;
+  border-radius: 10px;
+  width: 100%;
+  margin-block-start: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.welcomeBox .l-welcome-content {
+  padding: 80px 60px;
+}
+
+.welcomeBox .r-welcome-content,
+.r-welcome-content img {
+  border-radius: 10px;
+}
+
+.iconHolder {
+  background-color: var(--white-color);
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 12px;
+  color: var(--dark-color);
+  border-radius: 5px;
+}
+
+.welcomeBox .breadcrumb {
+  color: var(--white-color);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.welcomeBox .breadcrumb a {
+  transition: 0.3s ease;
+}
+
+.welcomeBox .breadcrumb a:where(:focus-within, :hover) {
+  opacity: 0.7;
+}
+
+.welcomeBox h1 {
+  font-size: 55px;
+  color: var(--white-color);
+  font-weight: bold;
+}
+
+.r-top-header,
+.l-top-header {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.gppIcons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.contactB-container {
+  background-color: rgb(231, 236, 243);
+  margin-block-start: 10px;
+  border-radius: 25px;
+  margin-block-end: 30px;
+
+}
+
+.flex-c-content {
+  display: flex;
+  gap: 35px;
+  padding: 100px;
+  
+}
+
+.contactB-container div {
+  width: 100%;
+  
+}
+
+.contactB-container .l-contact-container .titleTxt {
+  background-color: var(--white-color);
+  width: fit-content;
+  border-radius: 5px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-block-end: 10px;
+}
+
+.contactB-container .l-contact-container .HeaderTxt {
+  font-size: 48px;
+  padding-block-end: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+.contactB-container .l-contact-container .contactImg {
+  height: 300px;
+  width: 90%;
+  border-radius: 20px;
+  background-color: var(--white-color);
+}
+
+.l-contact-container .contactImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Icon Location Representative Details  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.contactB-container .r-contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  margin-block-start: 35px;
+}
+
+.r-contact-container .re-box {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.re-box .circle-icon {
+  background-color: #47b2e4;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  color: var(--white-color);
+  margin-block-end: 10px;
+  font-size: 24px;
+  border-radius: 50%;
+}
+
+.re-box .re-content h3 {
+  font-size: 20px;
+  font-weight: bold;
+  padding-block-end: 5px;
+}
+
+.re-box .re-content p {
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.re-box .re-content p:hover {
+  color: #444;
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  --- End Representative Details ---  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Define Form Styles  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.contactF-form {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0;
+  padding: 10px;
+
+  margin-block-start: 10px;
+}
+
+.contactF-form iframe {
+  border-radius: 0 0 25px 0;
+}
+
+.contactF-form .form-content {
+  position: relative;
+  padding: 55px;
+  background-color: #293751;
+  border-radius: 0 0 0 25px;
+  
+}
+
+.form-content .FormHeader {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--white-color);
+  padding-block-end: 30px;
+  margin-top:-50px;
+}
+
+.field {
+  width: 100%;
+  height: 55px;
+  border-radius: 15px;
+  margin-block-end: 10px;
+  margin-top:-5px;
+  
+}
+
+.flex-field {
+  display: flex;
+  gap: 20px;
+  margin-block-end: 20px;
+}
+
+.field input,
+select {
+  width: 100%;
+  height: 100%;
+  color: var(--white-color);
+  padding-left: 20px;
+  padding-right: 25px;
+  border-radius: 10px;
+  background-color: #cccccc18;
+  /* border: 1px solid #eeeeee7a; */
+  outline: none;
+  text-transform: capitalize;
+
+  font-weight: 500;
+}
+.field textarea
+{
+  width: 100%;
+  /* height: 100%//; */
+  color: var(--white-color);
+  padding-left: 20px;
+  padding:10px;
+  padding-right: 25px;
+  border-radius: 10px;
+  background-color: #cccccc18;
+  /* border: 1px solid #eeeeee7a; */
+  outline: none;
+  text-transform: capitalize;
+
+  font-weight: 500;
+}
+
+.field select option:not(:nth-child(0)) {
+  color: #444;
+  padding-right: 10px;
+}
+
+.field input::placeholder {
+  color: var(--white-color);
+}
+
+.notifyTxt {
+  color: var(--white-color);
+  padding-left: 8px;
+}
+
+.error {
+  color: var(--danger-color);
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.form-content .formBtn {
+  position: absolute;
+  right: 75px;
+  bottom: 0;
+  background-color: var(--white-color);
+  color: #444;
+  padding: 15px 30px;
+  font-size: 15px;
+  /* font-weight: 600; */
+  border-radius: 15px 15px 0 0;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.form-content .formBtn:hover {
+  opacity: 0.9;
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  --- End Form Styles ---  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Define Footer Main Codes  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.main-footer {
+  background-color: var(--dark-main-color);
+  border-radius: 25px 25px 0 0;
+  color: var(--white-color);
+  font-size: 16px;
+  padding: 0 150px 0 150px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.footer-description {
+  border-right: 1px solid #333;
+  padding-top: 100px;
+  padding-right: 40px;
+  padding-block-end: 30px;
+}
+
+.footer-description .footer-header {
+  font-size: 62px;
+  font-weight: bold;
+}
+
+.footer-description .contactBtn {
+  position: relative;
+  margin-block-end: 80px;
+}
+
+.footer-description .contactBtn button {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-description .contactBtn span:nth-child(1) {
+  display: flex;
+  background-color: var(--main-color);
+  width: fit-content;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-description .contactBtn span:nth-child(2) {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-description .contactBtn:where(:focus-within, :hover) span:nth-child(1) {
+  margin-left: 50px;
+}
+
+.footer-description .contactBtn:where(:focus-within, :hover) span:nth-child(2) {
+  position: absolute;
+  left: 0;
+}
+
+.footer-description p {
+  padding-block-end: 40px;
+}
+
+.footer-description .location-desc h2 {
+  font-size: 28px;
+  padding-block-end: 10px;
+}
+
+.footer-description .location-desc span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.footer-main-content {
+  position: relative;
+  padding-top: 120px;
+  padding-left: 40px;
+  padding-block-end: 30px;
+}
+
+.footer-main-content .flex-footer-main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.flex-footer-main-content header {
+  font-size: 24px;
+  padding-block-end: 20px;
+  font-weight: 600;
+}
+
+.flex-footer-main-content ul {
+  margin-block-end: 20px;
+}
+
+.flex-footer-main-content ul li a {
+  display: block;
+  padding-block-end: 10px;
+  transition: all 0.3s ease;
+  color: #c9c1c1;
+}
+
+.flex-footer-main-content ul li a:where(:focus-within, :hover) {
+  color: var(--main-color);
+}
+
+.flex-footer-main-content .r-footer-main-content .field {
+  position: relative;
+  margin-block-start: 20px;
+  display: flex;
+}
+
+.flex-footer-main-content .r-footer-main-content .field button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border-left: 1px solid #444;
+  height: 100%;
+  font-size: 22px;
+  width: 50px;
+  border-radius: 0 10px 10px 0;
+}
+
+.flex-footer-main-content .r-footer-main-content .field input {
+  border-radius: 10px;
+  background-color: #cccccc18;
+  border: 1px solid #444;
+  color: var(--white-color);
+  padding-left: 20px;
+}
+
+.flex-footer-main-content .r-footer-main-content .field input:focus {
+  border: 1px solid var(--main-color);
+}
+
+.flex-footer-main-content .r-footer-main-content .field input::placeholder {
+  color: var(--white-color);
+}
+
+.gpp-footer-icons {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #333;
+  padding: 25px 0 0 0;
+}
+
+.gpp-footer-icons .icon-links {
+  display: flex;
+  gap: 10px;
+}
+
+.gpp-footer-icons .icon-links a {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  background-color: #cccccc18;
+  border-radius: 50%;
+  border: 1px solid #333;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.gpp-footer-icons .icon-links a:where(:focus-within, :hover) {
+  background-color: var(--main-color);
+}
+
+.gpp-footer-icons .footer-main-txt {
+  color: #b9b3b3;
+}
+
+/* 
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+        Define Responsive styles for mobile Devices
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+ */
+
+@media (max-width: 768px) {
+  .gpp-container .welcomeBox {
+    opacity: 0.9;
+  }
+
+  .welcomeBox .l-welcome-content {
+    padding: 40px 20px;
+  }
+
+  .welcomeBox .r-welcome-content,
+  .r-welcome-content img {
+    display: none;
+  }
+
+  .gpp-container .gpp-top-header {
+    display: none;
+  }
+
+  .contactB-container {
+    border-radius: 10px;
+  }
+
+  .flex-c-content {
+    flex-direction: column;
+    padding: 20px 10px;
+    gap: 0px;
+  }
+
+  .contactB-container .r-contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contactB-container .l-contact-container .titleTxt {
+    padding: 4px 9px;
+    font-size: 12px;
+  }
+
+  .contactB-container .l-contact-container .HeaderTxt {
+    font-size: 30px;
+    /* word-break: break-all; */
+  }
+
+  .contactB-container .l-contact-container .contactImg {
+    height: auto;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .l-contact-container .contactImg img {
+    border-radius: 5px;
+  }
+
+  .contactB-container .r-contact-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+  }
+
+  .r-contact-container .re-box {
+    padding: 0;
+    margin-block-end: 20px;
+  }
+
+  .contactF-form {
+    grid-template-columns: 1fr;
+    margin-block-start: 0;
+  }
+
+  .contactF-form iframe {
+    border-radius: 0 0 0 0;
+  }
+
+  .contactF-form .form-content {
+    padding: 15px;
+    border-radius: 0 0 0 0;
+  }
+
+  .form-content .FormHeader {
+    font-size: 35px;
+  }
+
+  .field {
+    width: 100%;
+    height: 55px;
+    border-radius: 15px;
+    margin-block-end: 10px;
+  }
+
+  .flex-field {
+    flex-direction: column;
+    gap: 10px;
+    margin-block-end: 10px;
+  }
+
+  .main-footer {
+    background-color: var(--dark-main-color);
+    border-radius: 5px 5px 0 0;
+    color: var(--white-color);
+    font-size: 16px;
+    padding: 0 20px 0 20px;
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .footer-description {
+    border-right: none;
+    padding-top: 10px;
+    padding-right: 40px;
+    padding-block-end: 30px;
+  }
+
+  .footer-description .contactBtn {
+    position: relative;
+    margin-block-end: 40px;
+  }
+
+  .footer-main-content {
+    position: relative;
+    padding-top: 20px;
+    padding-left: 0;
+    padding-block-end: 0;
+  }
+
+  .footer-main-content .flex-footer-main-content {
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+
+  .gpp-footer-icons {
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+    justify-content: left;
+    align-items: normal;
+    padding: 25px 0 0 0;
+  }
+
+  .gpp-footer-icons .icon-links {
+    margin-block-end: 20px;
+  }
+
+  .footer-description .footer-header {
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .form-map {
+    margin-block-start: 20px;
+    height: 200px;
+  }
+}

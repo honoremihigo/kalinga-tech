@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abyride Driver Application Received</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+       background: linear-gradient(135deg,#293751 0%, #47B2E4  100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+       background: linear-gradient(135deg,#293751 0%, #47B2E4  100%);
+      color: #293751;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    .header h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+    .header img {
+      max-width:200px;
+      margin-bottom: 20px;
+      height:100px;
+    }
+    .content { padding: 30px; }
+    h2 {
+      color: #293751;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    h3 {
+      color: #293751;
+      margin: 25px 0 15px;
+      font-size: 1.4rem;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .status-badge {
+      background: #E3F2FD;
+      color: #293751;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      display: inline-block;
+      margin: 15px 0;
+      border: 1px solid #BBDEFB;
+    }
+    .contract-details-grid, .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .detail-card, .info-item {
+      background: #F5FAFF;
+      border: 1px solid #E1F5FE;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .detail-card strong, .info-item strong {
+      display: block;
+      color: #293751;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+    .detail-card span, .info-item span {
+      color: #47B2E4;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .signature-note {
+      background: #E1F5FE;
+      border-left: 5px solid #47B2E4;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    .footer {
+      background: #F5FAFF;
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #E1F5FE;
+    }
+    .footer h3 {
+      color: #293751;
+      margin-bottom: 15px;
+    }
+    .footer a {
+      color: #47B2E4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer p {
+      color: #666;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+    .section-title {
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #47B2E4;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://aspirebridgerwanda.org/abyride-logo.png" alt="Abyride Logo" />
+      <h1>🚗 Abyride Application Received</h1>
+      <p>Thank you for applying to join our platform</p>
+    </div>
+
+    <div class="content">
+      <div class="welcome-section">
+        <h2>Application Submitted Successfully</h2>
+        <p>Dear <strong>{{firstName}} {{lastName}}</strong>,</p>
+        <p>We've received your application and all submitted documents.</p>
+        <p>Our recruitment team is currently reviewing your information and will reach out to you shortly.</p>
+        <span class="status-badge">Status: Under Review</span>
+      </div>
+
+      <div class="contract-header">
+        <h3>⏳ What to Expect Next</h3>
+        <div class="contract-details-grid">
+          <div class="detail-card">
+            <strong>Application Date</strong>
+            <span>{{applicationDate}}</span>
+          </div>
+          <div class="detail-card">
+            <strong>Status</strong>
+            <span>Pending Review</span>
+          </div>
+          <div class="detail-card">
+            <strong>Follow-Up Time</strong>
+            <span>Within 3–5 Business Days</span>
+          </div>
+          <div class="detail-card">
+            <strong>Support Contact</strong>
+            <span>abyridellc@gmail.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="client-section">
+        <h3 class="section-title">👤 Your Information Summary</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Full Name</strong>
+            <span>{{firstName}} {{lastName}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Date of Birth</strong>
+            <span>{{dateOfBirth}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Phone Number</strong>
+            <span>{{phoneNumber}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Email Address</strong>
+            <span>{{email}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Nationality</strong>
+            <span>{{nationality}}</span>
+          </div>
+          <div class="info-item">
+            <strong>License ID</strong>
+            <span>{{licenseId}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vehicle-section">
+        <h3 class="section-title">🚙 Vehicle Info </h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>VIN</strong>
+            <span>{{vinNumber}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Make & Model</strong>
+            <span>{{make}} {{model}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Year</strong>
+            <span>{{year}}</span>
+          </div>
+          <div class="info-item">
+            <strong>Plate Number</strong>
+            <span>{{plateNumber}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="signature-note">
+        <p>🕒 Please be patient as our team processes your application. We'll be in touch shortly. Thank you for choosing Abyride!</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <h3>💬 Need Help?</h3>
+      <a href="mailto:abyridellc@gmail.com">Contact our support team any time.</a>
+
+      <p style="margin-top: 30px; font-size: 14px; opacity: 0.9;">
+        Thanks for trusting Abyride LLC<br>
+        <em>Your journey with us begins here 🚘</em>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

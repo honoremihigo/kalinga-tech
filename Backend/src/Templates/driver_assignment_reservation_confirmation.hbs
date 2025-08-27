@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New Paid Reservation - Driver Assignment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #47B2E4 0%, #293751 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #47B2E4 0%, #293751 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .header img {
+      max-width:200px;
+      margin-bottom: 20px;
+      height:100px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .welcome-section h2 {
+      font-size: 1.8rem;
+      color: #293751;
+    }
+
+    .welcome-section p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .status-badge {
+      background: #47B2E4;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .reservation-details h3,
+    .followup-section h3,
+    .footer h3 {
+      color: #293751;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #47B2E4;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .detail-card {
+      background: #f4f8fc;
+      border: 1px solid #d3e9f8;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .detail-card strong {
+      display: block;
+      color: #293751;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .detail-card span {
+      color: #47B2E4;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .followup-section {
+      background: #e9f6fd;
+      border-left: 5px solid #47B2E4;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+
+    .followup-section p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .footer {
+      background: #f0f4f9;
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #d0e2f2;
+    }
+
+    .footer p {
+      color: #333;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+
+    .footer a {
+      color: #47B2E4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .payment-confirmation {
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    .payment-confirmation h3 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    .important-note {
+      background: #fff8e1;
+      border-left: 5px solid #ffc107;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        border-radius: 15px;
+      }
+
+      .header {
+        padding: 30px 20px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <div class="header">
+      <img src="https://aspirebridgerwanda.org/abyride-logo.png" alt="Abyride Logo" />
+      <h1>💰 Paid Reservation Assigned</h1>
+      <p>Client has already paid - please proceed with pickup</p>
+    </div>
+
+    <section class="content welcome-section" aria-label="Welcome message">
+      <h2>Hello {{driverName}},</h2>
+      <p>You've been assigned a <strong>pre-paid</strong> reservation. The client has already completed payment.</p>
+      
+      <div class="payment-confirmation">
+        <h3>✅ Payment Confirmed</h3>
+        <p>This reservation is fully paid. Your earnings will be processed after successful trip completion.</p>
+      </div>
+    </section>
+
+    <section class="content reservation-details" aria-label="Reservation details">
+      <h3>Client & Trip Details</h3>
+      <div class="details-grid">
+        <div class="detail-card">
+          <strong>Client Name</strong>
+          <span>{{clientName}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Client Phone</strong>
+          <span>{{clientPhone}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Client Email</strong>
+          <span>{{clientEmail}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Pickup Location</strong>
+          <span>{{pickup}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Dropoff Location</strong>
+          <span>{{dropoff}}</span>
+        </div>
+        <div class="detail-card">
+          <strong>Scheduled Time</strong>
+          <span>{{scheduledDateTime}}</span>
+        </div>
+        {{!-- <div class="detail-card">
+          <strong>Passengers</strong>
+          <span>{{passengers}}</span>
+        </div> --}}
+        <div class="detail-card">
+          <strong>Reservation Number</strong>
+          <span>{{reservationNumber}}</span>
+        </div>
+      </div>
+    </section>
+
+   
+    <section class="content followup-section" style="margin:35px" aria-label="Next steps">
+      <h3>Your Earnings</h3>
+      <p>For this trip, you will earn: <strong style="font-size: 1.3rem; color: #2e7d32;">${{driverEarningAmount}}</strong></p>
+      <p>Payment will be processed according to your regular payment schedule after trip completion.</p>
+    </section>
+
+    <div class="footer">
+      <h3>Need Assistance?</h3>
+      <p>Contact dispatch if you have any questions about this reservation.</p>
+      <a href="mailto:support@abyridellc.com">support@abyridellc.com</a>
+      <p style="margin-top: 30px; font-size: 14px; opacity: 0.9;">
+        Thank you for driving with AbyRide<br>
+        <em>Safe travels!</em>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
