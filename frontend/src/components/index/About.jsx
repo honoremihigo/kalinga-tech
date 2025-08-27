@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-import Image from '../../assets/static/service4.jpg'; // Keep your image path
+import Image from '../../assets/static/about1.jpg'; // Keep your image path
 
 // eslint-disable-next-line react/prop-types
 const CheckIcon = ({ className }) => (

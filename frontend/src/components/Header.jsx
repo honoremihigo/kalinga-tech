@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import placefrombottle from "../assets/images/casestudy/driver.webp";
+import placefrombottle from "../assets/static/header.jpg";
 import { HomeIcon } from "@heroicons/react/24/solid";
 
 const Header = (props) => {

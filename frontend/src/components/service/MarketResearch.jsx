@@ -9,49 +9,56 @@ const MarketResearch = () => {
       <img
         src={Picture}
         className="rounded-xl h-[450px] object-cover"
-        alt="Language Translation Services"
+        alt="Gaming Devices by Kalinga Tech"
       />{" "}
       <em className="text-gray-500 pr-10 font-normal text-justify">
         {" "}
-        In a world that’s increasingly connected, bridging language gaps has
-        never been more critical. At Abyride, we provide professional language
-        translation services that empower businesses and individuals to
-        communicate effectively across borders.{" "}
+        At Kalinga Tech, we believe gaming is more than just entertainment—it’s
+        an experience. That’s why we provide the latest gaming devices and
+        accessories designed to deliver power, performance, and immersive
+        gameplay for casual players and hardcore gamers alike.{" "}
       </em>
       <div className="flex flex-col md:flex-row gap-6 w-full p-6 bg-gray-100">
         <div className="flex flex-col bg-white shadow-lg border border-gray-200 rounded-lg p-6 w-full md:w-1/2">
           <h1 className="capitalize font-semibold text-3xl lg:text-4xl xl:text-4xl pt-3 mb-4">
-            Breaking Barriers, Building Connections
+            Next-Level Gaming Experience
           </h1>{" "}
           <p className="text-gray-600 pr-10 font-normal text-justify leading-loose">
             {" "}
-            Our translation services cover a wide array of industries and
-            languages, ensuring your message resonates with your target
-            audience. Whether you need document translation, website
-            localization, or real-time interpretation, we have the expertise to
-            meet your needs. From legal and technical translations to creative
-            and cultural adaptations, we deliver precise and culturally
-            sensitive translations every time.{" "}
+            From high-performance consoles and gaming laptops to controllers,
+            VR headsets, and accessories, our product range covers everything a
+            gamer needs. Whether you’re into competitive eSports, immersive
+            open-world adventures, or casual gaming, Kalinga Tech delivers
+            devices built for speed, graphics, and durability. Our goal is to
+            ensure you stay ahead of the game with cutting-edge technology and
+            unbeatable reliability.{" "}
           </p>
         </div>
 
         {/* Card 2 */}
         <div className="flex flex-col bg-white shadow-lg border border-gray-200 rounded-lg p-6 w-full md:w-1/2">
           <h1 className="capitalize font-semibold text-3xl lg:text-4xl xl:text-2xl mb-2 pt-3">
-            Why Choose Our Translation Services?
+            Why Choose Gaming Devices from Kalinga Tech?
           </h1>
           <p className="text-gray-600 pr-10 font-normal text-justify leading-loose">
             {" "}
-            At Abyride, we are committed to accuracy, efficiency, and
-            confidentiality. Here’s why we stand out:{" "}
+            We are dedicated to providing gamers with the tools they need for an
+            unforgettable experience. By choosing Kalinga Tech, you’ll benefit
+            from:{" "}
             <ul className="list-disc ml-6">
               {" "}
               <li>
-                Experienced translators fluent in over 100 languages.
+                A wide selection of gaming consoles, laptops, and accessories.
               </li>{" "}
-              <li>Specialized industry knowledge for accurate context.</li>{" "}
-              <li>Fast turnaround times without compromising quality.</li>{" "}
-              <li>Secure handling of sensitive documents.</li>{" "}
+              <li>
+                Devices optimized for performance, speed, and stunning graphics.
+              </li>{" "}
+              <li>
+                Affordable pricing and packages for every type of gamer.
+              </li>{" "}
+              <li>
+                Expert support and guidance to help you choose the right device.
+              </li>{" "}
             </ul>{" "}
           </p>
         </div>

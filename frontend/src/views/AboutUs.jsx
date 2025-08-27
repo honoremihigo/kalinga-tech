@@ -1,7 +1,7 @@
 import React from "react";
 import Collaborators from "../components/index/Collaborators.jsx";
 import Blog from "../components/blog-card/Blog.jsx";
-import AboutUsImage from "../assets/static/service2.jpg";
+import AboutUsImage from "../assets/static/about2.jpg";
 import AboutUsImage1 from "../assets/images/casestudy/image1.jpg";
 import { aboutUsText, powerPatnersData } from "../staticData/data.js";
 import { useNavigate } from "react-router-dom";

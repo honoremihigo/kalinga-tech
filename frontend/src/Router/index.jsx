@@ -378,20 +378,12 @@ const routes = [
             path: "",
             element: (
               <SuspenseWrapper>
-                <PortfolioManage />
-              </SuspenseWrapper>
-            ),
-          },
-          {
-            path: "home-care",
-            element: (
-              <SuspenseWrapper>
                 <TeamLeadership />
               </SuspenseWrapper>
             ),
           },
           {
-            path: "language-translation",
+            path: "playstation-devices",
             element: (
               <SuspenseWrapper>
                 <MarketResearch />

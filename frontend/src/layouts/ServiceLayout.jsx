@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import avatar1 from "../assets/images/avatar/avatar1.jpg";
+import avatar1 from "../assets/static/service7.jpg";
 
 const ServiceLayout = () => {
   const [title, setTitle] = useState("choose product category on the side");
@@ -10,7 +10,7 @@ const ServiceLayout = () => {
 
   // the links that navigate to the different product categories
   const links = [
-    { name: "Computers", to: "/products" },
+    { name: "Computers selling ", to: "" },
     { name: "PlayStation Devices", to: "playstation-devices" },
   ];
 
